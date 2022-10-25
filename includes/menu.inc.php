@@ -2,33 +2,31 @@
 
 Class Menu {
     public static $menu = array(
-        "nyitolap" => array("Nyitólap", "", "111"),    
-        "elerhetoseg" => array("Elérhetőség", "", "100"),    
-        "linkek" => array("Linkek", "", "111"),    
-        "alapinfok" => array("Alapinfók", "elerhetoseg", "111"),    
-        "kiegeszitesek" => array("Kiegészítések", "elerhetoseg", "011"),    
-        "belepes" => array("Belépés", "", "100"),    
-        "kilepes" => array("Kilépés", "", "011"),    
-        "admin" => array("Admin", "", "001")
+        "nyitolap" => array("Nyitólap", "", 'menun' => array(1,1)),    
+        "hiroldal" => array("Híroldal", "", 'menun' => array(0,1)),    
+        "linkek" => array("Linkek", "", 'menun' => array(1,1)),    
+        "mnb" => array("MNB Árfolyamok", "", 'menun' => array(1,1)),    
+        "regisztracio" => array("Regisztráció", "",'menun' => array(1,0)),    
+        "belepes" => array("Belépés", "", 'menun' =>array(1,0)),    
+        "kilepes" => array("Kilépés", "", 'menun' =>array(0,1))
     );
 
     public static function getMenu($sItems) {
-        $submenu = "";
+       
         
         $menu = '<ul class="navbar-nav">';
         foreach(self::$menu as $menuindex => $menuitem)       
         {
-            if($menuitem[1] == "")
+            if( $_SESSION['felhasznaloszint']=="" && $menuitem['menun'][0]  )
             { $menu.= '<li class="nav-item"><a class="nav-link '.($menuindex==$sItems[0]? 'class="active"':"").' " href="'.SITE_ROOT.$menuindex.'" >'.$menuitem[0].'</a></li>'; }
-            else if($menuitem[1] == $sItems[0])
-            { $submenu .= "<li><a href='".SITE_ROOT.$sItems[0]."/".$menuindex."' ".($menuindex==$sItems[1]? "class='selected'":"").">".$menuitem[0]."</a></li>"; }
+            
+            if(  $_SESSION['felhasznaloszint'] != "" && $menuitem['menun'][1])
+            { $menu.= '<li class="nav-item"><a class="nav-link '.($menuindex==$sItems[0]? 'class="active"':"").' " href="'.SITE_ROOT.$menuindex.'" >'.$menuitem[0].'</a></li>'; }
         }
         $menu.="</ul>";
         
-        if($submenu != "")
-            $submenu = "<ul>".$submenu."</ul>";
-        
-        return $menu.$submenu;
+       
+        return $menu;
     }
 
     public static function setPageTitlebyMenuItem($sItems) {

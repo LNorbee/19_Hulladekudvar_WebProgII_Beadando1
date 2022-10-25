@@ -1,10 +1,11 @@
 <?php
 
 session_start();
-if(! isset($_SESSION['userid'])) $_SESSION['userid'] = 0;
-if(! isset($_SESSION['userfirstname'])) $_SESSION['userfirstname'] = "";
-if(! isset($_SESSION['userlastname'])) $_SESSION['userlastname'] = "";
-if(! isset($_SESSION['username'])) $_SESSION['username'] = "";
+if(! isset($_SESSION['felhasznaloId'])) $_SESSION['felhasznaloId'] = "";
+if(! isset($_SESSION['csaladNev'])) $_SESSION['csaladNev'] = "";
+if(! isset($_SESSION['keresztNev'])) $_SESSION['keresztNev'] = "";
+if(! isset($_SESSION['felhasznalonev'])) $_SESSION['felhasznalonev'] = "";
+if(! isset($_SESSION['felhasznaloszint'])) $_SESSION['felhasznaloszint'] = "";
 
 include(SERVER_ROOT . 'includes/config.inc.php');
 include(SERVER_ROOT . 'includes/database.inc.php');

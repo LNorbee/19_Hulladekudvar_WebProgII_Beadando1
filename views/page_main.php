@@ -14,13 +14,20 @@
             <h1>Hulladék udvar</h1>
         </div>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <a class="navbar-brand" href="#">LOGÓ</a>
+            <a class="navbar-brand" href="#">
+            <?php if($_SESSION['felhasznaloId']) {?>Bejelentkezett: </br>
+                <strong><?= $_SESSION['csaladNev']." ".$_SESSION['keresztNev']." 
+                ".$_SESSION['felhasznalonev']."" ?></strong><?php } ?>
+            
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">                
                 <?php echo Menu::getMenu($viewData['selectedItems']); ?>
             </div>
+            
+            
             
         </nav>
         <div class="container" style="margin-top:30px">

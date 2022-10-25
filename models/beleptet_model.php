@@ -21,6 +21,8 @@ class Beleptet_Model
                 $_SESSION['csaladNev'] =  $felhasznalo['csaladNev'];
                 $_SESSION['keresztNev'] =  $felhasznalo['keresztNev'];
                 $_SESSION['felhasznalonev'] =  " (".$felhasznalo['felhasznalonev'].")";
+                $_SESSION['felhasznaloszint'] = "1";
+
             } else {
                 $retData['eredmeny'] = "ERROR";
                 $retData['uzenet'] = "Helytelen felhasználói név-jelszó pár!";
