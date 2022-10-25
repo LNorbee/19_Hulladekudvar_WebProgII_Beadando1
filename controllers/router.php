@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+if(! isset($_SESSION['userid'])) $_SESSION['userid'] = 0;
+if(! isset($_SESSION['userfirstname'])) $_SESSION['userfirstname'] = "";
+if(! isset($_SESSION['userlastname'])) $_SESSION['userlastname'] = "";
+if(! isset($_SESSION['username'])) $_SESSION['username'] = "";
+
 include(SERVER_ROOT . 'includes/config.inc.php');
 include(SERVER_ROOT . 'includes/database.inc.php');
 include(SERVER_ROOT . 'includes/menu.inc.php');
@@ -28,6 +34,8 @@ if($request != "")
 		}
 		
 	}
+
+	$vars += $_POST;
 	
 	foreach($params as $p) // a param�terek t�mbje felt�lt�se
 	{
