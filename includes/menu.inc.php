@@ -15,11 +15,11 @@ Class Menu {
     public static function getMenu($sItems) {
         $submenu = "";
         
-        $menu = "<ul>";
+        $menu = '<ul class="navbar-nav">';
         foreach(self::$menu as $menuindex => $menuitem)       
         {
             if($menuitem[1] == "")
-            { $menu.= "<li><a href='".SITE_ROOT.$menuindex."' ".($menuindex==$sItems[0]? "class='selected'":"").">".$menuitem[0]."</a></li>"; }
+            { $menu.= '<li class="nav-item"><a class="nav-link '.($menuindex==$sItems[0]? 'class="active"':"").' " href="'.SITE_ROOT.$menuindex.'" >'.$menuitem[0].'</a></li>'; }
             else if($menuitem[1] == $sItems[0])
             { $submenu .= "<li><a href='".SITE_ROOT.$sItems[0]."/".$menuindex."' ".($menuindex==$sItems[1]? "class='selected'":"").">".$menuitem[0]."</a></li>"; }
         }
@@ -28,7 +28,12 @@ Class Menu {
         if($submenu != "")
             $submenu = "<ul>".$submenu."</ul>";
         
-        return $menu.$submenu;;
+        return $menu.$submenu;
     }
+
+    public static function setPageTitlebyMenuItem($sItems) {
+        return self::$menu[$sItems[0]][0];
+    }
+
 }
 ?>

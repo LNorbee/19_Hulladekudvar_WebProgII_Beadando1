@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title><?php echo Menu::setPageTitlebyMenuItem($viewData['selectedItems']);?></title>
         <meta charset="utf-8">
-        <title>MVC - PHP</title>
-        <link rel="stylesheet" type="text/css" href="<?php echo SITE_ROOT?>css/main_style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <header>
-            <h1 class="header">Web-programozás II - MVC alkalmazás</h1>
-        </header>
-        <nav>
-            <?php echo Menu::getMenu($viewData['selectedItems']); ?>
+        <div class="jumbotron text-center" style="margin-bottom:0">
+            <h1>Hulladék udvar</h1>
+        </div>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#">LOGÓ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">                
+                <?php echo Menu::getMenu($viewData['selectedItems']); ?>
+            </div>
+            
         </nav>
-        <aside>
-                <p>Phasellus wisi nulla...</p>
-        </aside>
-        <section>
-            <?php include($viewData['render']); ?>
+        <div class="container" style="margin-top:30px">
+            <div class="row">
+                <div class="col-sm-12">
+                    <?php include($viewData['render']); ?>
+                </div>
+            </div>
+        </div>
+
+            
         </section>
-        <footer>&copy; NJE - GAMF - Informatika Tanszék <?= date("Y") ?></footer>
+        <div class="jumbotron text-center" style="margin-bottom:0">
+            &copy; NJE - GAMF - Informatika Tanszék <?= date("Y") ?>
+        </div>
     </body>
 </html>

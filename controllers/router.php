@@ -1,12 +1,11 @@
 <?php
 
-
-
+include(SERVER_ROOT . 'includes/config.inc.php');
 include(SERVER_ROOT . 'includes/database.inc.php');
 include(SERVER_ROOT . 'includes/menu.inc.php');
 
-// Felbontjuk a param�tereket. Az & elv�laszt� jellel v�gzett felbont�s
-// megfelel� lesz, els� eleme a megtekinteni k�v�nt oldal neve.
+// Felbontjuk a parametereket. Az & elvalaszto jellel vegzett felbontas
+// megfelelo lesz, elso eleme a megtekinteni kivant oldal neve.
 
 $page = "nyitolap";
 $subpage = "";
@@ -19,9 +18,9 @@ if($request != "")
 	$params = explode('/', $request);
 	$page = array_shift($params); // a k�rt oldal neve
 	
-	if(array_key_exists($page, Menu::$menu) && count($params)>0) // Az oldal egy men�pont oldala �s van m�g adat az url-ben
+	if(array_key_exists($page, Menu::$menu) && count($params)>0) // Az oldal egy menupont oldala is van meg adat az url-ben
 	{
-		$subpage = array_shift($params); // a k�rt aloldal
+		$subpage = array_shift($params); // a kert aloldal
 		if(! (array_key_exists($subpage, Menu::$menu) && Menu::$menu[$subpage][1] == $page)) // ha nem egy alolal
 		{
 			$vars[] = $subpage; // akkor ez egy parameter
@@ -45,7 +44,7 @@ $target = SERVER_ROOT.'controllers/'.$controllerfile.'.php';
 if(! file_exists($target))
 {
 	$controllerfile = "error404";
-	$target = SERVER_ROOT.'controllers/error404.php';
+	$target = SERVER_ROOT.'controllers/'.$controllerfile.'.php';
 }
 
 include_once($target);
@@ -70,7 +69,5 @@ function __autoload($className)
 	else
 	{ die("File '$file' containing class '$className' not found."); }
 }
-
-?>
 
 ?>
