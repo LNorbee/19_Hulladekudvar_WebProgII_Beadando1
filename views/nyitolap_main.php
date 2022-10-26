@@ -16,7 +16,7 @@
     </p>
     <p>
         Arról, hogy milyen típusú hulladékot mely hulladékudvarunkba lehet elvinni,
-        a <b><a href="regisztracio" class= "text-success">regisztrációt</a></b> követően kap tájékoztatást
+        a <b><a href="regisztracio" class= "text-success">regisztrációt</a></b> követően kap tájékoztatást.
     </p>
 
 </article>
