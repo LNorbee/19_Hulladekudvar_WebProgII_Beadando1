@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost/19_Hulladekudvar_WebProgII_Beadando1/soap/szerver/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost/19_Hulladekudvar_WebProgII_Beadando1/soap/szerver/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://localhost/19_Hulladekudvar_WebProgII_Beadando1/soap/szerver/">
+      <xsd:complexType name="Fajtak">
+        <xsd:all>
+          <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="uzenet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="hulladekfajtak" type="tns:FajtaArray" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Fajta">
+        <xsd:all>
+          <xsd:element name="id" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="nev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Helyek">
+        <xsd:all>
+          <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="uzenet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="fajtaid" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="helyek" type="tns:HelyArray" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Hely">
+        <xsd:all>
+          <xsd:element name="kerulet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="cim" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getHulladekFajtakRequest"/>
+  <wsdl:message name="getHulladekFajtakResponse">
+    <wsdl:part name="getHulladekFajtakReturn" type="tns:Fajtak"/>
+  </wsdl:message>
+  <wsdl:message name="getHuladekudvarHelyRequest">
+    <wsdl:part name="fajtaid" type="xsd:int"/>
+  </wsdl:message>
+  <wsdl:message name="getHuladekudvarHelyResponse">
+    <wsdl:part name="getHuladekudvarHelyReturn" type="tns:Helyek"/>
+  </wsdl:message>
+  <wsdl:portType name="HulladekudvarokPortType">
+    <wsdl:operation name="getHulladekFajtak">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:getHulladekFajtakRequest"/>
+      <wsdl:output message="tns:getHulladekFajtakResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getHuladekudvarHely">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:getHuladekudvarHelyRequest"/>
+      <wsdl:output message="tns:getHuladekudvarHelyResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HulladekudvarokBinding" type="tns:HulladekudvarokPortType">
+    <soap-env:binding xmlns="http://schemas.xmlsoap.org/wsdl/soap/" style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getHulladekFajtak">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/19_Hulladekudvar_WebProgII_Beadando1/soap/szerver/szerver.php?method=getHulladekFajtak" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHuladekudvarHely">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/19_Hulladekudvar_WebProgII_Beadando1/soap/szerver/szerver.php?method=getHuladekudvarHely" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Hulladekudvarok">
+    <wsdl:documentation/>
+    <wsdl:port name="HulladekudvarokPort" binding="tns:HulladekudvarokBinding">
+      <soap-env:address location="http://localhost/19_Hulladekudvar_WebProgII_Beadando1/soap/szerver/szerver.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

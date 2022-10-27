@@ -4,7 +4,7 @@ Class Menu {
     public static $menu = array(
         "nyitolap" => array("Nyitólap", "", 'menun' => array(1,1)),    
         "hiroldal" => array("Híroldal", "", 'menun' => array(0,1)),    
-        "linkek" => array("Linkek", "", 'menun' => array(1,1)),    
+        "hulladekudvarkereso" => array("Hulladékudvarkereső", "", 'menun' => array(0,1)),    
         "mnb" => array("MNB Árfolyamok", "", 'menun' => array(1,1)),    
         "regisztracio" => array("Regisztráció", "",'menun' => array(1,0)),    
         "belepes" => array("Belépés", "", 'menun' =>array(1,0)),    
