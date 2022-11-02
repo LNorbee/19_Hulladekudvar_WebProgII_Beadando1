@@ -12,6 +12,11 @@ class Mnb_Model
                 $to_deviza = $_POST["to_deviza"];
                 $on_date = $_POST["on_date"];
                 $sum = $_POST["sum"];
+
+                $retData['from_deviza'] = $from_deviza;
+                $retData['to_deviza'] = $to_deviza;
+                $retData['on_date'] = $on_date;
+                $retData['sum'] = $sum;
                 
 
                 unset($currates);
@@ -37,10 +42,10 @@ class Mnb_Model
                     $rates = $searchNode->getElementsByTagName("Rate");
 
                     foreach ($rates as $rate) {
-                        $unit_1 = "\t" . $rate->getAttribute('unit') . " ";
+                        $unit_1 = (int)$rate->getAttribute('unit');
                         $currency_1 = $rate->getAttribute('curr');
                         $dev_rate = $rate->nodeValue;
-                        $value_of_currency_1 = number_format(str_replace(",", ".", $dev_rate),2);
+                        $value_of_currency_1 = floatval(number_format(str_replace(",", ".", $dev_rate),2));
            
                     }
                 }
@@ -57,26 +62,28 @@ class Mnb_Model
                     $rates = $searchNode->getElementsByTagName("Rate");
 
                     foreach ($rates as $rate) {
-                        $unit_2 = "\t" . $rate->getAttribute('unit') . " ";
+                        $unit_2 = (int)$rate->getAttribute('unit');
                         $currency_2 = $rate->getAttribute('curr');
                         $dev_rate2 = $rate->nodeValue;
-                        $value_of_currency_2 = number_format(str_replace(",", ".", $dev_rate2),2);
+                        $value_of_currency_2 = floatval(number_format(str_replace(",", ".", $dev_rate2),2));
                     }
                 }
                
                 if (isset($value_of_currency_1) or isset($value_of_currency_2)) {
                     $mnbDefaultCurrency = "HUF";
-                    if ($currency_1 == $mnbDefaultCurrency and $currency_2 !== $mnbDefaultCurrency ) {   // HUF - Deviza
+                    if ($from_deviza == $mnbDefaultCurrency and $to_deviza !== $mnbDefaultCurrency ) {   // HUF - Deviza
                         $retData['eredmeny'] = ($sum / $value_of_currency_2) * $unit_2;
                     }
-                    if ($currency_1 !== $mnbDefaultCurrency and $currency_2 == $mnbDefaultCurrency ) {  // Deviza - HUF
+                    if ($from_deviza !== $mnbDefaultCurrency and $to_deviza == $mnbDefaultCurrency ) {  // Deviza - HUF
                         $retData['eredmeny'] = ($value_of_currency_1 * $sum) / $unit_1;
                     }
-                    if ($currency_1 !== $mnbDefaultCurrency and $currency_2 !== $mnbDefaultCurrency) {   // Deviza - Deviza
-                        number_format($retData['eredmeny'] = number_format((number_format(($value_of_currency_1 * $unit_1),2)) / (number_format(($value_of_currency_2 * $unit_2),2)) 
-                        * $sum,2),2);
+                    if ($from_deviza !== $mnbDefaultCurrency and $to_deviza !== $mnbDefaultCurrency) {   // Deviza - Deviza
+                        floatval($retData['eredmeny'] = number_format((number_format(($value_of_currency_1 * $unit_1),2))
+                         / (number_format(($value_of_currency_2 
+                         * $unit_2),2)) 
+                        * $sum,2));
                     }
-                    if ($currency_1 == $mnbDefaultCurrency and $currency_2 == $mnbDefaultCurrency) {   // HUF - HUF
+                    if ($from_deviza == $mnbDefaultCurrency and $to_deviza == $mnbDefaultCurrency) {   // HUF - HUF
                         $retData['eredmeny'] = $sum;
                     }
                 }

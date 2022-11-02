@@ -38,7 +38,7 @@
     
     <input class="btn btn-info" type="submit" name="get_currency_on_day" value="Árfolyam"><br><br>
 </form>
-<div>Eredmény: <?php echo number_format($viewData['eredmeny'], 2); ?></div>
+<div><?php echo $viewData['on_date']." napon: ".$viewData['sum']." ".$viewData['from_deviza']." = ".number_format($viewData['eredmeny'], 2)." ".$viewData['to_deviza']; ?></div>
 <table>
     <thead>
         <tr>
