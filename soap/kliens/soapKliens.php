@@ -2,7 +2,7 @@
 <html>
   <head>
 	<meta charset="utf-8">
-	<title>Mindentudás</title>
+	<title>Hulladékudvar</title>
   </head>
 
   <?php 

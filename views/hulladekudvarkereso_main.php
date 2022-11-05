@@ -8,7 +8,7 @@ $options = array(
   //'cache_wsdl' => WSDL_CACHE_NONE,
 );
 $client = new SoapClient(
-  'http://localhost/19_Hulladekudvar_WebProgII_Beadando1/soap/szerver/hulladekudvarok.wsdl',
+  SITE_ROOT.'/soap/szerver/hulladekudvarok.wsdl',
   $options
 );
 

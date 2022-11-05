@@ -10,7 +10,7 @@
 
 
             <label class="mr-sm-2">Dátum</label>
-            <input type="date" name="on_date" class="form-control" value="<?php echo date('Y-m-d'); ?>" required>
+            <input type="date" name="on_date" class="form-control" max="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>" required>
             <label class="mr-sm-2">Összeg</label>
             <input type="number" name="sum" class="form-control" value="1" required>
         </div>
